@@ -5,14 +5,16 @@ SELECT *
 FROM Customers
 WHERE Country = 'Spain';
 
-2. What are the distinct cities of customers from Germany with a city containing the letter 'B'?
+2. What are the distinct cities of customers from 
+Germany with a city containing the letter 'B'?
 
 SELECT DISTINCT City 
 FROM Customers 
 WHERE Country = 'Germany' 
 AND City LIKE '%B%';
 
-3. What are the number of orders placed by each customer? Sort the result by the number of orders in descending order.
+3. What are the number of orders placed by each customer? 
+Sort the result by the number of orders in descending order.
 
 SELECT 
     CustomerID, 
@@ -30,7 +32,8 @@ FROM Orders
 GROUP BY CustomerID
 HAVING COUNT(OrderID) > 3;
 
-5. What are the top 5 most expensive products? Round the price to 2 decimal places.
+5. What are the top 5 most expensive products? 
+Round the price to 2 decimal places.
 
 SELECT 
     ProductName, 
@@ -39,7 +42,8 @@ FROM Products
 ORDER BY Price DESC
 LIMIT 5;
 
-6. What are the order details (ProductID, Quantity) for customers from France?
+6. What are the order details (ProductID, Quantity) 
+for customers from France?
 
 SELECT 
 	o.OrderID, 
@@ -71,7 +75,8 @@ SELECT
 FROM Orders o
 LEFT JOIN Employees e ON o.EmployeeID = e.EmployeeID;
 
-9. What is the average, minimum, and maximum price of products? Round the values to 2 decimal places.
+9. What is the average, minimum, and maximum price of products? 
+Round the values to 2 decimal places.
 
 SELECT 
     ROUND(CAST(AVG(Price) AS NUMERIC), 2) AS AveragePrice,
@@ -79,7 +84,9 @@ SELECT
     ROUND(CAST(MAX(Price) AS NUMERIC), 2) AS MaximumPrice
 FROM Products;
 
-10. What are the products with prices between 10 and 50? Round the price to 2 decimal places and sort the result by price in descending order.
+10. What are the products with prices between 10 and 50? 
+Round the price to 2 decimal places and sort the result 
+by price in descending order.
 
 SELECT 
     ProductID, 
@@ -89,7 +96,8 @@ FROM Products
 WHERE Price BETWEEN 10 AND 50
 ORDER BY Price DESC;
 
-11. What are the shippers and the total number of orders shipped by each shipper, including those with no orders?
+11. What are the shippers and the total number of orders shipped 
+by each shipper, including those with no orders?
 
 SELECT 
     s.ShipperName, 
@@ -98,7 +106,8 @@ FROM Shippers s
 LEFT JOIN Orders o ON s.ShipperID = o.ShipperID
 GROUP BY s.ShipperName;
 
-12. What are the employees who have processed > 5 orders? Sort the result by the number of orders in descending order.
+12. What are the employees who have processed > 5 orders? 
+Sort the result by the number of orders in descending order.
 
 SELECT 
 	e.EmployeeID, 
@@ -111,7 +120,9 @@ GROUP BY e.EmployeeID, e.FirstName, e.LastName
 HAVING COUNT(o.OrderID) > 5
 ORDER BY OrderCount DESC;
 
-13. What is the total revenue for each product within each order, including the product name and ordered by order ID and total revenue in descending order?
+13. What is the total revenue for each product within each order, 
+including the product name and ordered by order ID 
+and total revenue in descending order?
 
 SELECT 
 	od.OrderID,
@@ -123,7 +134,8 @@ JOIN Products p ON od.ProductID = p.ProductID
 GROUP BY od.OrderID, p.ProductID, p.ProductName
 ORDER BY od.OrderID, TotalRevenue DESC;
 
-14. What are the customers, employees, and the total number of orders placed by each customer?
+14. What are the customers, employees, and the total number 
+of orders placed by each customer?
 
 SELECT 
     c.CustomerID, 
@@ -135,11 +147,14 @@ SELECT
 FROM Orders o
 JOIN Customers c ON o.CustomerID = c.CustomerID
 JOIN Employees e ON o.EmployeeID = e.EmployeeID
-GROUP BY c.CustomerID, c.CustomerName, e.EmployeeID, e.FirstName, e.LastName;
+GROUP BY c.CustomerID, c.CustomerName, e.EmployeeID, e.FirstName, 
+e.LastName;
 
 
-15. What are the products with an average price higher than the overall average product price? 
-    Round the price to 2 decimal places and sort the result by price in descending order.
+15. What are the products with an average price higher than 
+the overall average product price? 
+Round the price to 2 decimal places and sort the result 
+by price in descending order.
 
 SELECT 
     ProductID, 
